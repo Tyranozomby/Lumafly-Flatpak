@@ -1,0 +1,38 @@
+id: io.github.themulhima.Lumafly
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+command: lumafly
+modules:
+  - name: lumafly
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 Lumafly /app/bin/lumafly
+      - ffmpeg -i Lumafly.png -vf scale=512:512 Lumafly.resized.png
+      - install -Dm644 Lumafly.resized.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      - install -Dm644 Lumafly.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+    sources:
+      - type: archive
+        dest-filename: Lumafly-Linux.zip
+        url: https://github.com/TheMulhima/Lumafly/releases/download/v3.3.0.0/Lumafly-Linux.zip
+        sha256: 482c02eed417cfba6b60c55161f6b529a08d90b4e185a7bb934d3e0c0b718a9d
+      - type: file
+        dest-filename: Lumafly.png
+        url: https://github.com/TheMulhima/Lumafly/blob/master/Lumafly/Assets/Lumafly.png?raw=true
+        sha256: 3b4fef0f73d0ffa975c82e788c21766f2ea89e95ba21176cdb906a774481a232
+      - type: file
+        dest-filename: Lumafly.desktop
+        path: Lumafly.desktop
+      - type: file
+        dest-filename: metainfo.xml
+        path: metainfo.xml
+finish-args:
+  - --share=network
+  - --socket=x11
+  - --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/Hollow Knight
+  - --filesystem=xdg-data/Steam/steamapps/common/Hollow Knight
+  - --filesystem=xdg-config/unity3d/Team Cherry/Hollow Knight:ro
+  - --persist=xdg-config/HKModInstaller
+  - --device=dri
+  - --share=ipc

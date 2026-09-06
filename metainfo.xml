@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>io.github.themulhima.Lumafly</id>
+
+    <name>Lumafly</name>
+    <summary>A cross platform mod manager for Hollow Knight written in Avalonia.</summary>
+
+    <icon type="stock">io.github.themulhima.Lumafly</icon>
+    <icon type="cached">Lumafly.png</icon>
+    <icon type="remote" width="912" height="912">https://github.com/TheMulhima/Lumafly/blob/master/Lumafly/Assets/Lumafly.png?raw=true</icon>
+
+    <categories>
+        <category>Game</category>
+    </categories>
+
+    <url type="homepage">https://themulhima.github.io/Lumafly/</url>
+    <url type="bugtracker">https://themulhima.github.io/Lumafly/issues</url>
+    <url type="translate">https://crowdin.com/project/lumafly</url>
+
+    <releases>
+        <release version="3.3.0.0" date="2024-09-29"/>
+    </releases>
+
+    <keywords>
+        <keyword translate="no">Hollow Knight</keyword>
+        <keyword translate="no">HK</keyword>
+    </keywords>
+
+    <developer id="io.github.themulhima">
+        <name>TheMulhima</name>
+    </developer>
+
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0-only</project_license>
+
+    <recommends>
+        <display_length compare="ge">500</display_length>
+    </recommends>
+
+    <description>
+        <h1>Lumafly</h1>
+        <p>This is a cross platform mod manager for <a href="https://www.hollowknight.com">Hollow Knight</a> which is fully localized in English, Spanish, Portuguese, French, Chinese, Japanese, Russian, and Polish.</p>
+        <p>Formerly known as <strong>Scarab+</strong></p>
+        <h2>Usage</h2>
+        <ul>
+            <li>Download the latest version from the <a href="https://themulhima.github.io/Lumafly?download">download link</a> (or manually from the <a href="https://github.com/TheMulhima/Lumafly/releases/latest">releases page</a>).</li>
+            <li>Search through and download the mods you like.</li>
+            <li>Mods appear in the top left corner of the game title screen after installation.</li>
+            <li>Enable/Disable mods from affecting the game using the toggle and update outdated mods using the orange update button.</li>
+            <li>If you are unable to connect to the internet, Lumafly can be launched in offline mode where you can toggle mods/api.</li>
+        </ul>
+        <h2>Features</h2>
+        <ul>
+            <li>Automatically downloads the <a href="https://github.com/hk-modding/api">Modding API</a> which is required for mods to load. It also allows switching between modded and vanilla via the Toggle API button.</li>
+            <li>Search through the 300+ mods available in the <a href="https://github.com/hk-modding/modlinks">official modlinks</a>.</li>
+            <li>Group mods in modpacks and share them using the <a href="https://github.com/TheMulhima/Lumafly/wiki/Commands">commands</a>.</li>
+            <li>Display mods that were recently updated or released.</li>
+            <li>Serve as a singular place to download mods, update them, edit its settings, view its Readme, and report bugs.</li>
+            <li>Manage mods not available through modlinks via the manually install button.</li>
+        </ul>
+        <h2>Contributions</h2>
+        <ul>
+            <li>If you want to suggest a feature or report a bug, report it on the <a href="https://github.com/TheMulhima/Lumafly/issues/new/choose">issues page</a>.  </li>
+            <li>If you want to contribute to Lumafly, feel free to. You can see what features are currently requested over <a href="https://github.com/TheMulhima/Lumafly/labels/enhancement">here</a></li>
+            <li>If you want to contribute to localizations, please use <a href="https://crowdin.com/project/lumafly">crowdin</a> to add the translations.</li>
+        </ul>
+        <details>
+            <summary><h3>Credits</h3></summary>
+
+            - Programming
+            - <a href="https://github.com/fifty-six">56</a> - Creator of <a href="https://github.com/fifty-six/Scarab">Scarab</a>, on which Lumafly is based
+            - <a href="https://github.com/JacksonFaller">JacksonFaller</a>, <a href="https://github.com/jngo102">Italy</a>, and <a href="https://github.com/Acu1000">Acu1000</a>
+
+            - Translations
+            - <a href="https://github.com/Clazex">Clazex</a> - Chinese translations
+            - <a href="https://github.com/luizeldorado">luiz_eldorado</a> - Portuguese translations
+            - <a href="https://github.com/Dastan21">Dastan</a> - French translations
+            - <a href="https://twitter.com/Adrin63_?t=lbzYGgt-3Zybjb_S2xqt2A&amp;s=09">Adrin</a> and <a href="https://ko-fi.com/helensb">Helen</a> - Spanish translations
+            - <a href="https://discordapp.com/users/274945280775028736">Страг</a> - Russian translations
+            - <a href="https://github.com/Acu1000">Acu1000</a> - Polish translations
+            - <a href="https://twittter.com/sawayoshiyt">Sawayoshi</a> - Japanese translations
+            - <a href="https://discordapp.com/users/454185487641608193">Thommie</a> - Dutch translations
+
+            - Art
+            - <a href="https://patreon.com/DwarfWoot">Dwarfwoot</a>, <a href="https://github.com/SFGrenade">SFGrenade</a> - Images and icons used in the installer.
+            - <a href="https://www.tumblr.com/ded-lime">Lime</a> - The Lumafly banner.
+            - <a href="https://ko-fi.com/hbkit">HBKit</a> - The Lumafly icon.
+
+        </details>
+    </description>
+
+    <branding>
+        <color type="primary" scheme_preference="light">#162840</color>
+        <color type="primary" scheme_preference="dark">#0a1d3a</color>
+    </branding>
+    <tags>
+
+    </tags>
+
+    <launchable type="desktop-id">io.github.themulhima.Lumafly.desktop</launchable>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://github.com/TheMulhima/Lumafly/blob/static-resources/Readme%20Assets/Info.png?raw=true</image>
+        </screenshot>
+        <screenshot>
+            <image>https://github.com/TheMulhima/Lumafly/blob/static-resources/Readme%20Assets/ModList.png?raw=true</image>
+        </screenshot>
+    </screenshots>
+</component>
