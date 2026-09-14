@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=Lumafly
-Icon=com.themulhima.Lumafly
+Icon=io.github.themulhima.Lumafly
 Exec=lumafly
 Categories=Game;
