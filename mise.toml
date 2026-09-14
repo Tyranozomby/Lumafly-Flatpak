@@ -2,7 +2,7 @@
 output_dir = "dist"
 
 [tasks.build]
-run = "flatpak run org.flatpak.Builder --install-deps-from=flathub --force-clean --user --install {{vars.output_dir}} io.github.themulhima.Lumafly.yaml"
+run = "flatpak run org.flatpak.Builder --install-deps-from=flathub --force-clean --install {{vars.output_dir}} io.github.themulhima.Lumafly.yaml"
 
 [tasks.check]
 run = "flatpak run org.flathub.flatpak-external-data-checker io.github.themulhima.Lumafly.yaml"
