@@ -8,14 +8,8 @@ jobs:
   flatpak-external-data-checker:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        branch: [ master ] # list all branches to check
-
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ matrix.branch }}
 
       - uses: docker://ghcr.io/flathub/flatpak-external-data-checker:latest
         env:
