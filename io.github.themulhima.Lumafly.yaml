@@ -17,6 +17,13 @@ modules:
         dest-filename: Lumafly-Linux.zip
         url: https://github.com/TheMulhima/Lumafly/releases/download/v3.3.0.0/Lumafly-Linux.zip
         sha256: 482c02eed417cfba6b60c55161f6b529a08d90b4e185a7bb934d3e0c0b718a9d
+        x-checker-data:
+          type: json
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          url: https://api.github.com/repos/TheMulhima/Lumafly/releases/latest
+          version-query: .tag_name | sub("^v"; "")
+          url-query: .assets[] | select(.name=="Lumafly-Linux.zip") | .browser_download_url
       - type: file
         dest-filename: Lumafly.png
         url: https://github.com/TheMulhima/Lumafly/blob/master/Lumafly/Assets/Lumafly.png?raw=true
