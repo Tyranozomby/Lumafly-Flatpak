@@ -15,8 +15,8 @@ modules:
     sources:
       - type: archive
         dest-filename: Lumafly-Linux.zip
-        url: https://github.com/TheMulhima/Lumafly/releases/download/v3.3.0.0/Lumafly-Linux.zip
-        sha256: 482c02eed417cfba6b60c55161f6b529a08d90b4e185a7bb934d3e0c0b718a9d
+        url: https://github.com/TheMulhima/Lumafly/releases/download/v3.2.0.0/Lumafly-Linux.zip
+        sha256: 482c02eed417cfba6b60c55161f6b529a08d90b4e185a7bb934d3e0c0b718a94
         x-checker-data:
           type: json
           tag-query: .tag_name
