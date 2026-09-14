@@ -15,8 +15,8 @@ modules:
     sources:
       - type: archive
         dest-filename: Lumafly-Linux.zip
-        url: https://github.com/TheMulhima/Lumafly/releases/download/v3.2.0.0/Lumafly-Linux.zip
-        sha256: 482c02eed417cfba6b60c55161f6b529a08d90b4e185a7bb934d3e0c0b718a94
+        url: https://github.com/TheMulhima/Lumafly/releases/download/v3.3.0.0/Lumafly-Linux.zip
+        sha256: 482c02eed417cfba6b60c55161f6b529a08d90b4e185a7bb934d3e0c0b718a9d
         x-checker-data:
           type: json
           tag-query: .tag_name
@@ -37,7 +37,8 @@ modules:
 finish-args:
   - --share=network
   - --socket=x11
-  - --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/Hollow Knight
+  - --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/Hollow
+    Knight
   - --filesystem=xdg-data/Steam/steamapps/common/Hollow Knight
   - --filesystem=xdg-config/unity3d/Team Cherry/Hollow Knight:ro
   - --persist=xdg-config/HKModInstaller
