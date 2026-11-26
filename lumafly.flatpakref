@@ -1,6 +1,7 @@
 [Flatpak Ref]
 Title=Lumafly
 Name=io.github.themulhima.Lumafly
+Branch=main
 Url=https://github.com/Tyranozomby/Lumafly-Flatpak/
 SuggestRemoteName=lumafly
 Homepage=https://github.com/Tyranozomby/Lumafly-Flatpak/
