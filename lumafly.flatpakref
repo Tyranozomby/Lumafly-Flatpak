@@ -2,7 +2,6 @@
 Title=Lumafly
 Name=io.github.themulhima.Lumafly
 Url=https://tyranozomby.github.io/Lumafly-Flatpak/
-SuggestRemoteName=lumafly
 Homepage=https://github.com/Tyranozomby/Lumafly-Flatpak/
 Icon=https://github.com/TheMulhima/Lumafly/blob/master/Lumafly/Assets/Lumafly.png?raw=true
 RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo
