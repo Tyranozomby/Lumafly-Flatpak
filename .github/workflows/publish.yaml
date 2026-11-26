@@ -1,0 +1,128 @@
+
+name: Flatpak
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  APP_ID: io.github.themulhima.Lumafly
+  RUNTIME_REPO: https://dl.flathub.org/repo/flathub.flatpakrepo
+  BRANCH: ${{ vars.BRANCH }}
+
+jobs:
+  flatpak:
+    name: Build Flatpak
+    runs-on: ubuntu-latest
+
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
+      options: --privileged --user 0
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Set up container user
+        run: |
+          if ! getent passwd root > /dev/null; then
+            echo "root:x:0:0:root:/root:/bin/bash" >> /etc/passwd
+          fi
+
+          if ! getent group root > /dev/null; then
+            echo "root:x:0:" >> /etc/group
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up variables
+        run: |
+          echo "MANIFEST_PATH=${GITHUB_WORKSPACE}/${APP_ID}.yaml" >> "$GITHUB_ENV"
+          echo "BUNDLE=${APP_ID}.flatpak" >> "$GITHUB_ENV"
+
+      - name: Set up Flathub repository
+        run: |
+          flatpak remote-add \
+            --user \
+            --if-not-exists \
+            flathub \
+            "$RUNTIME_REPO"
+
+      - name: Build Flatpak
+        run: |
+          flatpak-builder build \
+            --user \
+            --install-deps-from=flathub \
+            --disable-rofiles-fuse \
+            --disable-updates \
+            --force-clean \
+            --repo=repo \
+            ${BRANCH:+--default-branch="$BRANCH"} \
+            "$MANIFEST_PATH"
+
+      - name: Generate Flatpak bundle
+        run: |
+          flatpak build-bundle \
+            --runtime-repo="$RUNTIME_REPO" \
+            repo \
+            "$BUNDLE" \
+            "$APP_ID" \
+            ${BRANCH:+"$BRANCH"}
+
+      - name: Update Flatpak repository
+        run: |
+          flatpak build-update-repo \
+            --generate-static-deltas \
+            --prune \
+            repo/
+
+      - name: Upload Flatpak bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: flatpak-bundle
+          path: ${{ env.BUNDLE }}
+          retention-days: 7
+
+      - name: Upload Flatpak repository
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: repo/
+          retention-days: 7
+
+  pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: flatpak
+
+    if: >-
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+
+    permissions:
+      pages: write
+      id-token: write
+
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
