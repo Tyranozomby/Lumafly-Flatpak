@@ -1,0 +1,10 @@
+[Flatpak Ref]
+Title=Lumafly
+Name=io.github.themulhima.Lumafly
+Url=https://github.com/Tyranozomby/Lumafly-Flatpak/
+SuggestRemoteName=lumafly
+Homepage=https://github.com/Tyranozomby/Lumafly-Flatpak/
+Icon=https://github.com/TheMulhima/Lumafly/blob/master/Lumafly/Assets/Lumafly.png?raw=true
+RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo
+IsRuntime=false
+GPGKey=mDMEawhzphYJKwYBBAHaRw8BAQdAH+U98NXyDztONKWK3C9p1wNGWkaRbWNpgjFDDEHNnOK0HXR5cmFub3pvbWJ5IChGbGF0cGFrIEx1bWFmbHkpiJMEExYKADsWIQSn3EkmHHSLZbeodgzk1Khl8U6fLQUCawhzpgIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRDk1Khl8U6fLduxAQC5i6TRe38ltOtU4hrM/BMgB4DmrJkivNlMP/Jqn+EeMwD/Ru7dQ3qN+Vt7EpS6Gzsk+BvtTpDrMUsng0H7A62tMQS4OARrCHOmEgorBgEEAZdVAQUBAQdAquUQ5ONB1jf0l5wZBIPEwfzJFJ9HBSEPrMsAHPAYck8DAQgHiHgEGBYKACAWIQSn3EkmHHSLZbeodgzk1Khl8U6fLQUCawhzpgIbDAAKCRDk1Khl8U6fLTq6AQCbwfXe30TqvVbwuC3V/crtHKhgY2ohPlWLvNmSratZUgD/RiinKyMr/nFSfh/6mASQy9/dWrz5mnLwdaGWM1AefA4=
