@@ -11,8 +11,7 @@ permissions:
   contents: read
 
 env:
-  APP_ID: tld.vendor.app_name
-  DOCKER_IMAGE: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
+  APP_ID: io.github.themulhima.Lumafly
   RUNTIME_REPO: https://dl.flathub.org/repo/flathub.flatpakrepo
   BRANCH: ${{ vars.BRANCH }}
 
@@ -26,7 +25,7 @@ jobs:
       github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
 
     container:
-      image: ${{ env.DOCKER_IMAGE }}
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
       options: --privileged --user 0
 
     defaults:
