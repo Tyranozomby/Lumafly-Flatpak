@@ -11,7 +11,8 @@ permissions:
   contents: read
 
 env:
-  APP_ID: io.github.themulhima.Lumafly
+  APP_ID: tld.vendor.app_name
+  DOCKER_IMAGE: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
   RUNTIME_REPO: https://dl.flathub.org/repo/flathub.flatpakrepo
   BRANCH: ${{ vars.BRANCH }}
 
@@ -25,7 +26,7 @@ jobs:
       github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
 
     container:
-      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
+      image: ${{ env.DOCKER_IMAGE }}
       options: --privileged --user 0
 
     defaults:
@@ -61,11 +62,36 @@ jobs:
             flathub \
             "$RUNTIME_REPO"
 
+      - name: Set up GPG signing
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYGRIP: ${{ secrets.GPG_KEYGRIP }}
+        run: |
+          mkdir -p ~/.gnupg
+          chmod 700 ~/.gnupg
+
+          echo "allow-preset-passphrase" >> ~/.gnupg/gpg-agent.conf
+          echo "max-cache-ttl 86400" >> ~/.gnupg/gpg-agent.conf
+
+          gpg-connect-agent reloadagent /bye
+
+          printf '%s\n' "$GPG_PRIVATE_KEY" | gpg --batch --import
+
+          if [[ -n "$GPG_PASSPHRASE" ]]; then
+            printf '%s\n' "$GPG_PASSPHRASE" | \
+              /usr/libexec/gpg-preset-passphrase \
+                --preset "$GPG_KEYGRIP"
+          fi
+
       - name: Build Flatpak
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
         run: |
           flatpak-builder build \
             --user \
             --install-deps-from=flathub \
+            --gpg-sign="$GPG_KEY_ID" \
             --disable-rofiles-fuse \
             --disable-updates \
             --force-clean \
@@ -74,8 +100,11 @@ jobs:
             "$MANIFEST_PATH"
 
       - name: Generate Flatpak bundle
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
         run: |
           flatpak build-bundle \
+            --gpg-sign="$GPG_KEY_ID" \
             --runtime-repo="$RUNTIME_REPO" \
             repo \
             "$BUNDLE" \
@@ -83,8 +112,11 @@ jobs:
             ${BRANCH:+"$BRANCH"}
 
       - name: Update Flatpak repository
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
         run: |
           flatpak build-update-repo \
+            --gpg-sign="$GPG_KEY_ID" \
             --generate-static-deltas \
             --prune \
             repo/
@@ -101,6 +133,7 @@ jobs:
         with:
           path: repo/
           retention-days: 7
+          include-hidden-files: true
 
   pages:
     name: Deploy to GitHub Pages
